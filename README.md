@@ -29,6 +29,9 @@ file size of the zip file.
 
 ## Release Notes
 
+### 3.2.0 (Dec 5, 2016)
+* Added getDocRoot_OnlyiOS
+
 ### 3.1.0 (Feb 23, 2016)
 * Updated SSZipArchive (ios lib) to 1.1
 
