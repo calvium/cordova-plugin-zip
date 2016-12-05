@@ -9,6 +9,7 @@
 
 
 - (void)unzip:(CDVInvokedUrlCommand*)command;
+- (void)docRoot:(CDVInvokedUrlCommand*)command;
 - (void)zipArchiveWillUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo;
 
 @end

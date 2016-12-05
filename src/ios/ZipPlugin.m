@@ -51,6 +51,25 @@
     }];
 }
 
+- (void)docRoot:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* pluginResult = nil;
+        
+        @try {
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsString:documentsDirectory];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+        @catch(NSException* exception) {
+            NSLog(@"%@ - %@", @"Error occurred during unzipping", [exception debugDescription]);
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error occurred during unzipping"];
+        }
+    }];
+}
+
 - (void)zipArchiveWillUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo
 {
     NSMutableDictionary* message = [NSMutableDictionary dictionaryWithCapacity:2];
